@@ -1,0 +1,55 @@
+<%- include('partials/header') %> 
+
+<h1>Liste des étudiants</h1>
+
+<!-- maintenant ici j'ai accès à une variable "students et pormoId" -->
+
+
+<button id="addStudentButton">Add student</button>
+
+<!-- Formulaire pour ajouter un étudiant -->
+<div id="addStudentForm" style="display: none;">
+    <h2>Ajouter un étudiant</h2>
+    <form action="/promos/<%= promoId %>/addStudent" method="POST">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required>
+        
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required>
+        
+        <label for="github_username">GitHub Username:</label>
+        <input type="text" id="github_username" name="github_username" required>
+        
+        <button type="submit">Add Student</button>
+    </form>
+</div>
+<!--Creation de la liste de étudiants-->
+<ul class="cards">
+    <% for(let student of students) { %>
+        <li class="card">                
+            <%= student.last_name %>
+            <%= student.first_name %>
+        </a>
+    </li>
+    <% }%>
+</ul>
+
+
+
+<script>
+    // Sélectionnez le bouton "Add student" par son identifiant
+    const addStudentButton = document.getElementById('addStudentButton');
+
+    // Sélectionnez le formulaire "addStudentForm" par son identifiant
+    const addStudentForm = document.getElementById('addStudentForm');
+
+    // Ajoutez un gestionnaire d'événements pour le clic sur le bouton "Add student"
+    addStudentButton.addEventListener('click', () => {
+        // Afficher ou masquer le formulaire en fonction de son état actuel
+        if (addStudentForm.style.display === 'none') {
+            addStudentForm.style.display = 'block';
+        } else {
+            addStudentForm.style.display = 'none';
+        }
+    });
+</script>

@@ -1,0 +1,17 @@
+<%- include('partials/header') %> 
+
+    <h1>Liste des promotions</h1>
+
+    <!-- maintenant ici j'ai accès à une variable "promos" qui est un tableau -->
+    <!-- Dicton du jour : "Qui dit tableau, dit boucle" -->
+
+    <ul class="cards">
+        <% for(let promo of promos) { %>
+            <li class="card">
+                <a href="/promos/<%= promo.id %>">
+                    <%= promo.name %>
+                </a>
+            </li>
+        <% }%>
+
+    </ul>
